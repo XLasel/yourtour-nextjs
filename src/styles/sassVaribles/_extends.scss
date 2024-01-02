@@ -1,0 +1,62 @@
+// @use 'variables' as *;
+// @use 'mixins' as *;
+
+%p-normal {
+    @include font(normal 400 20px / 28px "Roboto");
+
+    @include tablet() {
+        @include font(normal 400 16px / 23px "Roboto");
+    }
+}
+
+%p-big {
+    @include font(normal 700 23px / 28px "Roboto");
+
+    @include tablet() {
+        @include font(normal 700 16px / 23px "Roboto");
+    }
+}
+
+%p-small {
+    @include font(normal 400 17px / 24px "Roboto", -0.17px);
+
+    @include tablet() {
+        @include font(normal 400 16px / 23px "Roboto", -0.16px);
+    }
+}
+
+%link {
+    text-decoration: none;
+
+    color: $black !important;
+
+    transition: all 0.3s ease;
+
+    @include hover {
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:active {
+            text-decoration: underline;
+
+            color: $green400;
+        }
+    }
+}
+
+%section-mrg-bottom {
+    margin-bottom: 135px;
+
+    @include tablet() {
+        margin-bottom: 75px;
+    }
+}
+
+%main-border-radius {
+    border-radius: 50px;
+
+    @include tablet() {
+        border-radius: 20px;
+    }
+}

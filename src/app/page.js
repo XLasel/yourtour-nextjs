@@ -1,9 +1,16 @@
 import Image from 'next/image'
-import styles from './page.module.css'
+import styles from './page.module.scss'
+import ChoiceSection from '@/components/ChoiceSection/ChoiceSection'
+import { Container } from '@/components/Container/Container'
+
 
 export default function Home() {
   return (
     <main className={styles.main}>
+      <Container>
+        <ChoiceSection />
+      </Container>
+
       <div className={styles.description}>
         <p>
           Get started by hiediting&nbsp;
