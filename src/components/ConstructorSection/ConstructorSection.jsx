@@ -1,320 +1,393 @@
-import Button from "../Button/Button";
+"use client";
+
+import { useState, useRef, useEffect } from "react";
+import Button from "../forms/Button/Button";
 import Section from "../Section/Section";
+import classNames from "classnames";
 import styles from "./ConstructorSection.module.scss";
+import { Controller, useForm } from "react-hook-form";
+import Select from "react-select";
 
 const ConstructorSection = () => {
   const title = "Собери свой тур";
   const subtitle =
     "Идейные соображения высшего порядка, а также рамки и место обучения кадров";
 
+  const options = [
+    { value: "campaign", label: "Поход" },
+    { value: "rafting", label: "Сплав" },
+    { value: "cyclingTrip", label: "Велопрогулка" },
+  ];
+
+  const getValue = (value) =>
+    value ? options.find((option) => option.value === value) : "";
+
+  const {
+    register,
+    formState: { errors, isValid, isDirty },
+    setValue,
+    setFocus,
+    getValues,
+    handleSubmit,
+    reset,
+    control,
+    watch,
+    clearErrors,
+    trigger,
+  } = useForm({
+    mode: "onBlur",
+  });
+
+  const selectedTour = watch("selectTour");
+
+  const validateStartDate = (value) => {
+    const currentDate = new Date();
+    // const selectedDate = new Date(value);
+
+    const startDateValue = getValues("startDate");
+    const startDate = new Date(startDateValue);
+
+    if (startDate < currentDate) {
+      return "Дата начала тура не может быть меньше текущей даты";
+    }
+
+    const endDateValue = getValues("endDate");
+    const endDate = new Date(endDateValue);
+    if (startDate > endDate) {
+      return "Дата начала не может быть больше даты окончания";
+    }
+
+    return true;
+  };
+
+  const validateEndDate = (value) => {
+    const currentDate = new Date();
+    // const selectedDate = new Date(value);
+
+    const endDateValue = getValues("endDate");
+    const endDate = new Date(endDateValue);
+
+    if (endDate < currentDate.setDate(currentDate.getDate() + 2)) {
+      return "Дата окончания не может быть меньше послезавтрашней даты";
+    }
+
+    const startDateValue = getValues("startDate");
+    const startDate = new Date(startDateValue);
+    if (endDate < startDate) {
+      return "Дата окончания не может быть меньше даты начала";
+    }
+
+    return true;
+  };
+
+  // const startDateValue = watch("startDate", ""); // Значение по умолчанию ""
+  // const endDateValue = watch("endDate", "");
+
+  // const validateDate = () => {
+  //   const currentDate = new Date();
+  //   const isoDateString = currentDate.toISOString().split('T')[0]
+  //   const startDateValue = getValues("startDate");
+  //   const endDateValue = getValues("endDate");
+
+  //   if (!!startDateValue) {
+
+  //   }
+
+  // }
+
+  const onSubmit = (data) => {
+    if (data.adult === "no") {
+      setError("adult", {
+        type: "manual",
+        message: "Вы должны быть старше 18 лет для продолжения.",
+      });
+    } else {
+      alert(JSON.stringify(data));
+      reset();
+    }
+  };
+
   return (
     <Section title={title} subtitle={subtitle}>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.flex}>
           <div className={styles.field}>
-            <label htmlFor="name" className={styles["field__label"]}>
+            <label htmlFor="name" className={styles.label}>
               Имя
             </label>
             <input
-              className={styles["field__input"]}
-              type="text"
               id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
+              type="text"
+              {...register("name", {
+                required: "Имя обязательно",
+                maxLength: {
+                  value: 30,
+                  message: "Превышение максимальной длины",
+                },
+              })}
               placeholder="Введите Ваше имя"
+              aria-invalid={errors.name ? "true" : "false"}
+              className={classNames(styles.input, {
+                [styles.invalid]: !!errors.name,
+              })}
             />
+            {errors.name && (
+              <div
+                className={styles["error-tooltip"]}
+                onClick={() => setFocus("name")}
+              >
+                {errors.name?.message}
+              </div>
+            )}
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="select__type" className={styles["field__label"]}>
+            <label htmlFor="selectTour" className={styles.label}>
               Направление
             </label>
-            <div className={styles["custom-arrow"]}>
-              <select
-                className={`${styles["field__select"]} ${styles["field__select-placeholder"]}`}
-                id="select__type"
-                name="type"
-                value={formData.type}
-                onChange={handleChange}
-              >
-                <option value="none" hidden="">
-                  Куда хотите ехать
+            {/* <Controller
+              control={control}
+              name="selectTour"
+              rules={{ required: "Тур обязателен" }}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
+                <Select
+                  className={styles.select}
+                  id="selectTour"
+                  placeholder="Куда хотите ехать"
+                  options={options}
+                  onChange={(newValue) => onChange(newValue.value)}
+                />
+              )}
+            /> */}
+            <select
+              id="selectTour"
+              {...register("selectTour", { required: "Тур обязателен" })}
+              className={classNames(styles.select, {
+                [styles.placeholder]: !selectedTour,
+              })}
+            >
+              <option value="" hidden>
+                Куда хотите ехать
+              </option>
+              {options.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
                 </option>
-                <option value="Поход">Поход</option>
-                <option value="Сплав">Сплав</option>
-                <option value="Велопрогулка">Велопрогулка</option>
-              </select>
-            </div>
+              ))}
+            </select>
+            {errors.selectTour && (
+              <div
+                className={styles["error-tooltip"]}
+                onClick={() => setFocus("selectTour")}
+              >
+                {errors.selectTour?.message}
+              </div>
+            )}
           </div>
-
-          <div className="constructor__form-field">
-            <label htmlFor="email" className="constructor__form-label">
+          <div className={styles.field}>
+            <label htmlFor="email" className={styles.label}>
               Email
             </label>
             <input
-              className="constructor__form-input"
+              className={styles.input}
               type="email"
               id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
               placeholder="example@mail.com"
-              required
+              {...register("email", {
+                required: true,
+                pattern: {
+                  value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                  message: "Некорретный email-формат",
+                },
+              })}
             />
+            {errors.email && (
+              <div
+                className={styles["error-tooltip"]}
+                onClick={() => setFocus("email")}
+              >
+                {errors.email?.message}
+              </div>
+            )}
           </div>
-
-          <div className="constructor__form-field">
-            <label htmlFor="phone" className="constructor__form-label">
+          <div className={styles.field}>
+            <label htmlFor="phone" className={styles.label}>
               Телефон
             </label>
             <input
-              className="constructor__form-input"
+              className={styles.input}
               type="tel"
               id="phone"
-              name="phone"
-              maxLength="50"
-              pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
               placeholder="+ 7 ( _ _ _ ) _ _ _ - _ _ - _ _"
-              value={formData.phone}
-              onChange={handleChange}
-              required
+              {...register("phone", {
+                required: true,
+                maxLength: 50,
+                pattern: {
+                  value: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
+                  message: "Некорректный номер телефона",
+                },
+              })}
             />
+            {errors.phone && (
+              <div
+                className={styles["error-tooltip"]}
+                onClick={() => setFocus("phone")}
+              >
+                {errors.phone?.message}
+              </div>
+            )}
           </div>
-
-          <div className="constructor__form-field">
-            <label htmlFor="date-from" className="constructor__form-label">
+          <div className={styles.field}>
+            <label htmlFor="startDate" className={styles.label}>
               Дата от
             </label>
-            <input
-              className="constructor__form-date constructor__form-input--date-placeholder"
-              type="date"
-              id="date-from"
-              name="dateFrom"
-              value={formData.dateFrom}
-              onChange={handleChange}
+            <Controller
+              name="startDate"
+              control={control}
+              rules={{ validate: validateStartDate }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="date"
+                  placeholder="ДД.ММ.ГГГГ"
+                  className={classNames(styles.date, {
+                    [styles.placeholder]: !field.value,
+                  })}
+                  onBlur={() => trigger(["startDate", "endDate"])}
+                />
+              )}
             />
+            {errors.startDate && (
+              <div
+                className={styles["error-tooltip"]}
+                onClick={() => setFocus("startDate")}
+              >
+                {errors.startDate?.message}
+              </div>
+            )}
           </div>
-
-          <div className="constructor__form-field">
-            <label htmlFor="date-to" className="constructor__form-label">
+          <div className={styles.field}>
+            <label htmlFor="endDate" className={styles.label}>
               Дата до
             </label>
-            <input
-              className="constructor__form-date constructor__form-input--date-placeholder"
-              type="date"
-              id="date-to"
-              name="dateTo"
-              value={formData.dateTo}
-              onChange={handleChange}
+            <Controller
+              name="endDate"
+              control={control}
+              rules={{ validate: validateEndDate }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  type="date"
+                  placeholder="ДД.ММ.ГГГГ"
+                  className={classNames(styles.date, {
+                    [styles.placeholder]: !field.value,
+                  })}
+                  onBlur={() => trigger(["startDate", "endDate"])}
+                />
+              )}
             />
+            {errors.endDate && (
+              <div
+                className={styles["error-tooltip"]}
+                onClick={() => setFocus("endDate")}
+              >
+                {errors.endDate?.message}
+              </div>
+            )}
           </div>
-
-          <div className="constructor__form-field">
-            <label htmlFor="comment" className="constructor__form-label">
+          <div className={styles.field}>
+            <label htmlFor="comment" className={styles.label}>
               Комментарий
             </label>
             <textarea
-              className="constructor__form-textarea"
-              style={{ resize: "none" }}
+              className={styles.textarea}
               name="comment"
               id="comment"
               rows="5"
               autoComplete="off"
-              value={formData.comment}
-              onChange={handleChange}
-            ></textarea>
+            />
           </div>
-
-          <div className="constructor__form-field">
-            <fieldset className="constructor__form-fieldset">
+          <div className={styles.field}>
+            <fieldset className={styles.fieldset}>
               <legend>Вам есть 18 лет?</legend>
-              <div className="constructor__form-radio-flex">
-                <label className="constructor__form-radio-label">
+              <div className={styles["radio-flex"]}>
+                <label className={styles["radio-label"]}>
                   <input
+                    {...register("adult", {
+                      required: true,
+                    })}
                     type="radio"
-                    name="answer"
                     value="yes"
-                    className="constructor__form-radio-input"
-                    checked={formData.answer === "yes"}
-                    onChange={handleChange}
+                    className={styles["radio-input"]}
                   />
-                  <span className="constructor__form-radio-custom"></span>
-                  Да
+                  <span className={styles["radio-custom"]} />
+                  <span>Да</span>
                 </label>
-                <label className="constructor__form-radio-label">
+                <label className={styles["radio-label"]}>
                   <input
+                    {...register("adult", {
+                      required: true,
+                    })}
                     type="radio"
-                    name="answer"
+                    name="adult"
                     value="no"
-                    className="constructor__form-radio-input"
-                    checked={formData.answer === "no"}
-                    onChange={handleChange}
+                    className={styles["radio-input"]}
                   />
-                  <span className="constructor__form-radio-custom"></span>
-                  Нет
+                  <span className={styles["radio-custom"]} />
+                  <span>Нет</span>
                 </label>
               </div>
             </fieldset>
+            {errors.adult && (
+              <div className={styles["error-tooltip"]}>
+                {errors.adult?.message}
+              </div>
+            )}
           </div>
-
-          <div className="constructor__form-field">
-            <label className="constructor__form-checkbox-lebel">
+          <div className={styles.fieldset}>
+            <label className={styles["checkbox-label"]}>
               <input
+                className={styles["checkbox-input"]}
                 type="checkbox"
-                className="constructor__form-checkbox-input"
                 required
-                checked={formData.agreement}
-                onChange={(e) =>
-                  setFormData((prevData) => ({
-                    ...prevData,
-                    agreement: e.target.checked,
-                  }))
-                }
+                {...register("agrement", {
+                  required: true,
+                })}
               />
-              <span className="constructor__form-checkbox-custom"></span>
+              <span className={styles["checkbox-custom"]} />
               <span>
                 Нажимая кнопку, я принимаю условия{" "}
                 <a href="#!">Лицензионного договора</a>
               </span>
             </label>
           </div>
-          <div className="constructor__form-field">
-            <label htmlFor="email" className="constructor__form-label">
-              Email
-            </label>
-            <input
-              className="constructor__form-input"
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="example@mail.com"
-              required
-            />
-          </div>
-
-          <div className="constructor__form-field">
-            <label htmlFor="phone" className="constructor__form-label">
-              Телефон
-            </label>
-            <input
-              className="constructor__form-input"
-              type="tel"
-              id="phone"
-              name="phone"
-              maxLength="50"
-              pattern="\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
-              placeholder="+ 7 ( _ _ _ ) _ _ _ - _ _ - _ _"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="constructor__form-field">
-            <label htmlFor="date-from" className="constructor__form-label">
-              Дата от
-            </label>
-            <input
-              className="constructor__form-date constructor__form-input--date-placeholder"
-              type="date"
-              id="date-from"
-              name="dateFrom"
-              value={formData.dateFrom}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="constructor__form-field">
-            <label htmlFor="date-to" className="constructor__form-label">
-              Дата до
-            </label>
-            <input
-              className="constructor__form-date constructor__form-input--date-placeholder"
-              type="date"
-              id="date-to"
-              name="dateTo"
-              value={formData.dateTo}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="constructor__form-field">
-            <label htmlFor="comment" className="constructor__form-label">
-              Комментарий
-            </label>
-            <textarea
-              className="constructor__form-textarea"
-              style={{ resize: "none" }}
-              name="comment"
-              id="comment"
-              rows="5"
-              autoComplete="off"
-              value={formData.comment}
-              onChange={handleChange}
-            ></textarea>
-          </div>
-
-          <div className="constructor__form-field">
-            <fieldset className="constructor__form-fieldset">
-              <legend>Вам есть 18 лет?</legend>
-              <div className="constructor__form-radio-flex">
-                <label className="constructor__form-radio-label">
-                  <input
-                    type="radio"
-                    name="answer"
-                    value="yes"
-                    className="constructor__form-radio-input"
-                    checked={formData.answer === "yes"}
-                    onChange={handleChange}
-                  />
-                  <span className="constructor__form-radio-custom"></span>
-                  Да
-                </label>
-                <label className="constructor__form-radio-label">
-                  <input
-                    type="radio"
-                    name="answer"
-                    value="no"
-                    className="constructor__form-radio-input"
-                    checked={formData.answer === "no"}
-                    onChange={handleChange}
-                  />
-                  <span className="constructor__form-radio-custom"></span>
-                  Нет
-                </label>
-              </div>
-            </fieldset>
-          </div>
-
-          <div className="constructor__form-field">
-            <label className="constructor__form-checkbox-lebel">
-              <input
-                type="checkbox"
-                className="constructor__form-checkbox-input"
-                required
-                checked={formData.agreement}
-                onChange={(e) =>
-                  setFormData((prevData) => ({
-                    ...prevData,
-                    agreement: e.target.checked,
-                  }))
-                }
-              />
-              <span className="constructor__form-checkbox-custom"></span>
-              <span>
-                Нажимая кнопку, я принимаю условия{" "}
-                <a href="#!">Лицензионного договора</a>
-              </span>
-            </label>
-          </div>
-
           <div className={styles.field}>
             <div className={styles.buttons}>
-              <Button type="submit" />
-              <Button type="reset" />
+              <Button
+                label="Найти тур"
+                style="primary"
+                type="submit"
+                disabled={!isValid}
+              />
+              {/* <Button
+                label="Посмотреть даннные"
+                type="button"
+                onClick={() => {
+                  console.log(getValues());
+                  // reset();
+                }}
+              /> */}
+              <Button
+                label="Сбросить"
+                type="button"
+                onClick={() => {
+                  console.log(getValues());
+                  reset();
+                }}
+              />
             </div>
           </div>
         </div>

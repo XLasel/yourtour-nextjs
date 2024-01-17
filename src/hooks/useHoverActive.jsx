@@ -1,36 +1,36 @@
-import { useState } from "react";
+// import { useState } from "react";
 
-const useHoverActive = () => {
-  const [isHovered, setHovered] = useState(false);
-  const [isActive, setActive] = useState(false);
+// const useHoverActive = () => {
+//   const [isHovered, setHovered] = useState(false);
+//   const [isActive, setActive] = useState(false);
 
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
+//   const handleMouseEnter = () => {
+//     setHovered(true);
+//   };
 
-  const handleMouseLeave = () => {
-    setHovered(false);
-    setActive(false);
-  };
+//   const handleMouseLeave = () => {
+//     setHovered(false);
+//     setActive(false);
+//   };
 
-  const handleMouseDown = () => {
-    setActive(true);
-  };
+//   const handleMouseDown = () => {
+//     setActive(true);
+//   };
 
-  const handleMouseUp = () => {
-    setActive(false);
-  };
+//   const handleMouseUp = () => {
+//     setActive(false);
+//   };
 
-  return {
-    isHovered,
-    isActive,
-    handlers: {
-      onMouseEnter: handleMouseEnter,
-      onMouseLeave: handleMouseLeave,
-      onMouseDown: handleMouseDown,
-      onMouseUp: handleMouseUp,
-    },
-  };
-};
+//   return {
+//     isHovered,
+//     isActive,
+//     handlers: {
+//       onMouseEnter: handleMouseEnter,
+//       onMouseLeave: handleMouseLeave,
+//       onMouseDown: handleMouseDown,
+//       onMouseUp: handleMouseUp,
+//     },
+//   };
+// };
 
-export default useHoverActive;
+// export default useHoverActive;

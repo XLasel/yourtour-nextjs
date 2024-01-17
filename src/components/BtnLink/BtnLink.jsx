@@ -1,12 +1,18 @@
+"use client";
 import Link from "next/link";
 import styles from "./BtnLink.module.scss";
+import { useHoverActive } from "@/context/HoverActiveContext";
+import classNames from "classnames";
 
-const BtnLink = ({ isHovered, isActive }) => {
+const BtnLink = () => {
+  const { active, hovered } = useHoverActive();
+
   return (
     <Link
-      className={`${styles.btn} ${isHovered && styles.hovered} ${
-        isActive && styles.active
-      }`}
+      className={classNames(styles.btn, {
+        [styles.hovered]: hovered,
+        [styles.active]: active,
+      })}
       href="#!"
     >
       <span className={styles.text}>Подробнее</span>

@@ -1,0 +1,419 @@
+@use '@/styles/sassVaribles' as *;
+
+.form {
+    @extend %main-border-radius;
+
+    width: 100%;
+    padding: 70px;
+
+    background: $white;
+
+    @include desktop() {
+        padding: 60px;
+    }
+
+    @include tablet() {
+        padding: 20px 20px 40px;
+
+        border-radius: 30px;
+    }
+
+    & *::placeholder {
+        color: $gray300;
+    }
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 33px;
+    column-gap: 30px;
+
+    @include desktop() {
+        column-gap: 20px;
+    }
+
+    @include tablet() {
+        row-gap: 30px;
+    }
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+
+    &:nth-child(-n + 6) {
+        flex-basis: calc(50% - 15px);
+
+        @include desktop() {
+            flex-basis: calc(50% - 10px);
+        }
+
+        @include mobile() {
+            flex-basis: 100%;
+        }
+    }
+
+    &:nth-child(n + 7):nth-child(-n + 10) {
+        flex-basis: 100%;
+    }
+}
+
+.label {
+    display: block;
+}
+
+.input,
+.textarea,
+.select,
+.date {
+    @extend %p-normal;
+
+
+    display: block;
+
+    width: 100%;
+    padding: 19px;
+
+    background-color: $beige100;
+    border: 1px solid $beige100;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    @include hover {
+        &:focus {
+            background-color: $beige200;
+            border-color: $gray300;
+        }
+
+        &:hover {
+            background-color: $beige200;
+        }
+    }
+}
+
+.input,
+.textarea {
+    @include tablet() {
+        padding: 9px;
+    }
+}
+
+.select {
+    position: relative;
+    // -moz-appearance: none;
+    // -webkit-appearance: none;
+    appearance: none;
+
+    padding-right: 50px;
+
+    color: $black;
+
+    @include tablet() {
+        padding: 9px 50px 9px 9px;
+    }
+
+    @include mobile() {
+        padding: 10.5px 50px 10.5px 9px;
+    }
+
+    &::-ms-expand {
+        display: none;
+    }
+
+    & option {
+        background-color: $white;
+
+        color: $black;
+    }
+}
+
+.textarea {
+    resize: "none"
+}
+
+.custom-arrow {
+    position: relative;
+
+    &::before {
+        content: "";
+
+        position: absolute;
+        top: 50%;
+        right: 20px;
+
+        display: block;
+
+        width: 26px;
+        height: 26px;
+
+        background-image: url("/image/icons/ic-dropdown.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        pointer-events: none;
+
+        transform: translateY(-50%);
+
+        @include tablet() {
+            right: 10px;
+        }
+    }
+}
+
+.date {
+    // -webkit-appearance: none;
+
+
+    height: 68px;
+
+    text-transform: uppercase;
+    letter-spacing: -0.6px;
+
+    @include tablet() {
+        height: 43px;
+        padding: 9px;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+        opacity: 0;
+    }
+
+}
+
+.placeholder {
+    color: $gray300;
+}
+
+.invalid {
+    border: 1px solid #f1c5c8;
+
+    @include hover {
+        &:focus {
+            border-color: #f1c5c8;
+        }
+
+        &:hover {
+            border-color: #f1c5c8;
+        }
+    }
+}
+
+.textarea {
+    height: 152px;
+
+    resize: none;
+
+    @include tablet() {
+        height: 132px;
+    }
+}
+
+.fieldset {
+    all: unset;
+
+    display: flex;
+    flex-direction: column;
+
+    & legend {
+        margin-bottom: 8px;
+    }
+}
+
+.radio-flex {
+    display: flex;
+    align-items: center;
+    gap: 31px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    cursor: pointer;
+
+    @include tablet() {
+        gap: 10px;
+    }
+
+    & input {
+        position: absolute;
+
+        pointer-events: none;
+        opacity: 0;
+    }
+}
+
+.radio-custom {
+    position: relative;
+
+    display: inline-block;
+
+    width: 1.1em;
+    height: 1.1em;
+
+    border: 0.1em solid $black;
+    border-radius: 50%;
+}
+
+.radio-input:checked+.radio-custom::before {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    display: inline-block;
+
+    width: 0.6em;
+    height: 0.6em;
+
+    background-color: $black;
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-label {
+    @extend %p-small;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    color: $gray300;
+
+    cursor: pointer;
+
+    @include desktop() {
+        gap: 12px;
+    }
+
+    @include tablet() {
+        align-items: flex-start;
+
+        font: normal 400 16px / 23px "Roboto", sans-serif;
+        letter-spacing: 0px;
+    }
+
+    @include mobile() {
+        gap: 10px;
+    }
+
+    & a {
+        @extend %link;
+    }
+}
+
+.checkbox-input {
+    position: absolute;
+
+    pointer-events: none;
+    opacity: 0;
+}
+
+.checkbox-custom {
+    display: block;
+    position: relative;
+
+    flex-shrink: 0;
+
+    width: 1.5em;
+    height: 1.5em;
+
+    border: 0.12em solid $black;
+    border-radius: 20%;
+
+    @include tablet() {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.checkbox-input:checked+.checkbox-custom::before {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: inline-block;
+
+    width: 0.82em;
+    height: 0.64em;
+
+    background-image: url("/image/icons/check-mark.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transform: translate(-50%, -50%);
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+
+    @include tablet() {
+        gap: 10px;
+    }
+}
+
+.error-tooltip {
+    position: absolute;
+    z-index: 1000;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    width: auto;
+    padding: 10px;
+    // background-color: #ffcccc;
+    background-color: rgba(255, 204, 204, 0.5);
+    /* Цвет с прозрачностью */
+    backdrop-filter: blur(30px);
+    // border: 1px solid #ff0000;
+    border-radius: 10px;
+    color: #ff0000;
+    @extend %p-small;
+    opacity: 0;
+    text-align: center;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.field:hover .error-tooltip {
+    display: block;
+    opacity: 1;
+}
+
+.field:focus-within .error-tooltip {
+    display: block;
+    opacity: 1;
+}
+
+.error-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #ffcccc transparent;
+}
+
+// .date::placeholder {
+//     color: #808080;
+//     /* Серый цвет */
+// }
+
+// .date:not(:placeholder-shown)::placeholder {
+//     color: #000000;
+//     /* Черный цвет */
+// }

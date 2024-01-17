@@ -1,15 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./ChoiceCard.module.scss";
 import BtnLink from "../BtnLink/BtnLink";
-import useHoverActive from "@/hooks/useHoverActive";
+import { useHoverActive } from "../../context/HoverActiveContext";
 import Image from "next/image";
 
 const ChoiceCard = ({ classParent = "", title, price, imageSrc }) => {
   const formattedPrice =
     price !== undefined ? Number(price).toLocaleString() : "";
-  const { isHovered, isActive, handlers } = useHoverActive();
+  const { handlers } = useHoverActive();
 
   return (
     <div className={`${styles.card} ${classParent}`} {...handlers}>
@@ -18,7 +18,7 @@ const ChoiceCard = ({ classParent = "", title, price, imageSrc }) => {
           <h3 className={styles.title}>{title}</h3>
           <p>от {formattedPrice} руб</p>
         </div>
-        <BtnLink isHovered={isHovered} isActive={isActive} />
+        <BtnLink />
       </div>
       <Image className={styles.image} src={imageSrc} alt={title} fill />
     </div>

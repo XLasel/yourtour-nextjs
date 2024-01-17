@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { NavLinks } from "@/constants";
 import styles from "./Navbar.module.scss";
 import Logo from "@/../public/image/icons/YouTour.svg";
@@ -8,7 +9,14 @@ const Navbar = () => {
     <div className={styles.wrapper}>
       <nav className={styles.nav}>
         <Link href="#">
-          <Logo className={styles.logo} />
+          <div className={styles["logo-wrapper"]}>
+            <Image
+              fill
+              src={"/image/icons/YouTour.svg"}
+              className={styles.logo}
+              alt="Youtour"
+            />
+          </div>
         </Link>
         <ul className={styles.list}>
           {NavLinks.map((link) => {

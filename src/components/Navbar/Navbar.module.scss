@@ -53,8 +53,8 @@
     }
 }
 
-.logo {
-    display: block;
+.logo-wrapper {
+    position: relative;
 
     width: 182px;
     height: 32px;
@@ -63,6 +63,10 @@
         width: 133px;
         height: 24px;
     }
+}
+
+.logo {
+    display: block;
 }
 
 .list {
