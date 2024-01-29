@@ -1,0 +1,54 @@
+@use '@scssVariables' as *;
+
+.error-tooltip {
+    @extend %p-small;
+
+    position: absolute;
+
+    display: none;
+    z-index: 2;
+
+    top: 100%;
+    left: 50%;
+
+    width: auto;
+    padding: 10px;
+
+    background-color: rgba(255, 204, 204, 0.5);
+    backdrop-filter: blur(30px);
+    border: 1px solid #ff0000;
+    border-radius: 10px;
+    color: #ff0000;
+    opacity: 0;
+
+
+    transform: translateX(-50%);
+    text-align: center;
+    transition: opacity 0.3s ease-in-out;
+
+    &::before {
+        content: '';
+        position: absolute;
+
+        top: -10px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent #ffcccc transparent;
+    }
+}
+
+@include hover {
+    div:hover>.error-tooltip {
+        display: block;
+        opacity: 1;
+    }
+
+    div:focus-within>.error-tooltip {
+        display: block;
+        opacity: 1;
+    }
+}

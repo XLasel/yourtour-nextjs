@@ -1,0 +1,44 @@
+@use '@scssVariables' as *;
+
+.list {
+    @extend %p-big;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 30px;
+
+    padding: 0;
+
+    list-style: none;
+
+    @include tablet() {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+.item {
+    cursor: pointer;
+
+    @include hover {
+        &:hover {
+            text-decoration: underline;
+            text-underline-offset: 9px;
+            text-decoration-thickness: 2px;
+        }
+    }
+
+    &--active {
+        color: $orange200;
+        text-decoration: underline;
+        text-underline-offset: 9px;
+        text-decoration-thickness: 2px;
+
+        @include tablet() {
+            text-underline-offset: 4px;
+            text-decoration-thickness: 2px;
+        }
+    }
+}

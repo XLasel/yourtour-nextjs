@@ -1,0 +1,70 @@
+@use '@scssVariables' as *;
+
+.card {
+  @extend %main-border-radius;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 70px;
+  flex-basis: 50%;
+
+  padding: 40px;
+
+  background-color: $beige200;
+
+  @include tablet() {
+    gap: 40px;
+
+    padding: 20px;
+  }
+
+  @include mobile() {
+    flex-basis: 100%;
+
+    min-height: auto;
+  }
+}
+
+.text {
+  & p {
+    @extend %p-big;
+
+    @include mobile() {
+      width: 98%;
+    }
+
+    &:not(:last-of-type) {
+      margin-bottom: 28px;
+
+      @include tablet() {
+        margin-bottom: 23px;
+      }
+    }
+  }
+}
+
+.user {
+  display: flex;
+  justify-content: space-between;
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 8px;
+
+    & p {
+      @extend %p-small;
+
+      color: $gray300;
+    }
+  }
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+
+  border-radius: 100px;
+}

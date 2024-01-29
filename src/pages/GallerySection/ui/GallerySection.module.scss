@@ -1,0 +1,50 @@
+@use '@scssVariables' as *;
+
+.flexbox {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 100%;
+
+  @include mobile() {
+    gap: 18px;
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+
+  @include desktop() {
+    gap: 20px;
+  }
+
+  @include mobile() {
+    gap: 10px;
+  }
+
+  &--small {
+    @include mobile() {
+      column-gap: 10px;
+    }
+  }
+}
+
+.item {
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 0;
+  height: calc((963px - 60px) / 3);
+
+  @include mobile() {
+    height: 110px;
+  }
+
+  & img {
+    @extend %main-border-radius;
+
+    object-fit: cover;
+  }
+}
