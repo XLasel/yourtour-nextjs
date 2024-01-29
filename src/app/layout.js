@@ -1,7 +1,7 @@
 import './globals.scss';
 
-import { Footer } from '@/pages/Footer';
-import { Header } from '@/pages/Header';
+import { Footer } from '@/page/Footer';
+import { Header } from '@/page/Header';
 
 import { DeviceTypeProvider } from '@/shared/context/DeviceTypeContext';
 
