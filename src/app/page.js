@@ -1,19 +1,17 @@
-import styles from './page.module.scss'
-import ChoiceSection from '@/components/ChoiceSection/ChoiceSection'
-import Container from '@/components/layout/Container/Container'
-import ConstructorSection from '@/components/ConstructorSection/ConstructorSection'
-import ResponseSection from '@/components/ResponseSection/ResponseSection'
-import GallerySection from '@/components/GallerySection/GallerySection'
-import { photoArray } from '@/constants'
-import StorySection from '@/components/StorySection/StorySection'
-import ArticlePromoSection from '@/components/ArticlePromoSection/ArticlePromoSection'
-
+import { Container } from '@/shared/ui/layout/Container';
+import { ChoiceSection } from '@/pages/ChoiceSection';
+import { ConstructorSection } from '@/pages/ConstructorSection';
+import { ResponseSection } from '@/pages/ResponseSection';
+import { GallerySection } from '@/pages/GallerySection';
+import { StorySection } from '@/pages/StorySection';
+import { ArticlePromoSection } from '@/pages/ArticlePromoSection';
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       <Container>
         <ChoiceSection />
+
       </Container>
       <Container>
         <ConstructorSection />
@@ -22,14 +20,14 @@ export default function Home() {
         <ResponseSection />
       </Container>
       <Container isFluid>
-        <GallerySection photos={photoArray} />
+        <GallerySection />
       </Container>
-      <Container >
+      <Container>
         <StorySection />
       </Container>
-      <Container >
+      <Container>
         <ArticlePromoSection />
       </Container>
     </main>
-  )
+  );
 }

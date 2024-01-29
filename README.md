@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# YourTour Next.js
 
-## Getting Started
+Учебный проект на Next.js в рамках стажировки в веб-студии Salt&Pepper. YourTour - макет лендинга для компании, которая помогает находить и организовывать индивидуальные туры и путешествия.
 
-First, run the development server:
+## Инструкции по установке
 
+Прежде чем начать, убедитесь, что у вас установлен [Node.js](https://nodejs.org/) и [npm](https://www.npmjs.com/).
+
+1. **Клонируйте репозиторий:**
+```bash
+git clone https://github.com/XLasel/yourtour-nextjs.git
+cd yourtour-nextjs
+```
+2. **Установите зависимости:**
+```bash
+npm install
+```
+3. **Запустите проект в режиме разработки:**
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+После этого откройте [http://localhost:3000](http://localhost:3000) в вашем браузере.
+4. **Соберите проект для продакшена:**
+```bash
+npm run build
+```
+5. **Запустите проект в режиме продакшена**
+```bash
+npm start
+```
+## Архитектура
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Проект основан на [Feature-Sliced Design](https://feature-sliced.design/).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Зависимости
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- classnames: ^2.5.1
+- next: 14.0.3
+- normalize.css: ^8.0.1
+- react: ^18
+- react-dom: ^18
+- react-headroom: ^3.2.1
+- react-hook-form: ^7.49.3
 
-## Learn More
+## DevDependencies
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- @svgr/webpack: ^8.1.0
+- eslint: ^8
+- eslint-config-next: 14.0.3
+- eslint-config-prettier: ^9.1.0
+- prettier: 3.2.3
+- sass: ^1.69.5
