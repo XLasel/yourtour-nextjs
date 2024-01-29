@@ -59,13 +59,13 @@ export const useScrollHandler = () => {
             heap.toUp = 0;
             heap.toDown = 0
             dispatchNavbarAction({ type: actionTypes.SHOW_NAV });
-        } else if (currentScroll > SCROLL_THRESHOLD + 500) {
+        } else if (currentScroll > heap.prevScroll) {
             heap.toUp = 0;
             heap.toDown += 1;
             if (shouldCloseNav()) {
                 dispatchNavbarAction({ type: actionTypes.CLOSE_NAV });
             }
-        } else {
+        } else if (currentScroll < heap.prevScroll) {
             heap.toUp += 1;
             heap.toDown = 0;
             if (shouldShowNav()) {
