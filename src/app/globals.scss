@@ -1,4 +1,4 @@
-@use '@scssVariables' as *;
+@import '@scssVariables';
 @import 'normalize.css/normalize.css';
 
 :root {
@@ -14,8 +14,6 @@
   box-sizing: inherit;
 
   margin: 0;
-
-
 }
 
 button {

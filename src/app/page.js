@@ -11,7 +11,6 @@ export default function Home() {
     <main>
       <Container>
         <ChoiceSection />
-
       </Container>
       <Container>
         <ConstructorSection />
