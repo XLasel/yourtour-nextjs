@@ -5,10 +5,10 @@ import classNames from 'classnames';
 
 import { Section } from '@/shared/ui/layout/Section';
 import { ItemFormLayout } from './layout/ItemFormLayout';
-import { Select } from './compoents/Select';
-import { DataPicker } from './compoents/DataPicker';
-import { ErrorMessage } from './compoents/ErrorMessage';
-import { Button } from './compoents/Button';
+import { Select } from './components/Select';
+import { DataPicker } from './components/DataPicker';
+import { ErrorMessage } from './components/ErrorMessage';
+import { Button } from './components/Button';
 
 import { constructorInfo } from '../config';
 import styles from './ConstructorSection.module.scss';

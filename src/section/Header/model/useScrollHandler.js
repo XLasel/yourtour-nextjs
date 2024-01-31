@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useReducer } from 'react';
 import { debounce } from '@/shared/lib';
 
 //Constants
-const SCROLL_THRESHOLD = 538;
+const SCROLL_THRESHOLD = 450;
 const DEBOUNCE_DELAY = 200;
 const DOWN_THRESHOLD = 3;
 const UP_THRESHOLD = 1;
@@ -47,14 +47,13 @@ export const useScrollHandler = () => {
 
     const updateNavState = () => {
         const currentScroll = window.pageYOffset;
-        let statusFixed = navFixed;
 
         if (isBelowScrollThreshold(currentScroll)) {
             heap.prevScroll = currentScroll;
             dispatchNavbarAction({ type: actionTypes.SHOW_NAV });
             return;
         }
-        statusFixed = true;
+        setNavFixed(true);
         if (currentScroll < SCROLL_THRESHOLD + 500) {
             heap.toUp = 0;
             heap.toDown = 0
@@ -73,7 +72,6 @@ export const useScrollHandler = () => {
             }
         }
         heap.prevScroll = currentScroll;
-        setNavFixed(statusFixed);
     };
 
     const scrollFixed = () => {

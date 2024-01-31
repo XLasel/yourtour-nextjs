@@ -1,10 +1,10 @@
 import { Container } from '@/shared/ui/layout/Container';
-import { ChoiceSection } from '@/page/ChoiceSection';
-import { ConstructorSection } from '@/page/ConstructorSection';
-import { ResponseSection } from '@/page/ResponseSection';
-import { GallerySection } from '@/page/GallerySection';
-import { StorySection } from '@/page/StorySection';
-import { ArticlePromoSection } from '@/page/ArticlePromoSection';
+import { ChoiceSection } from '@/section/ChoiceSection';
+import { ConstructorSection } from '@/section/ConstructorSection';
+import { ResponseSection } from '@/section/ResponseSection';
+import { GallerySection } from '@/section/GallerySection';
+import { StorySection } from '@/section/StorySection';
+import { ArticlePromoSection } from '@/section/ArticlePromoSection';
 
 export default function Home() {
   return (

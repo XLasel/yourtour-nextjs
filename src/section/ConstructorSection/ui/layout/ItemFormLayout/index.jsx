@@ -3,7 +3,7 @@
 import { useFormContext } from 'react-hook-form';
 import classNames from 'classnames';
 
-import { ErrorMessage } from '../../compoents/ErrorMessage';
+import { ErrorMessage } from '../../components/ErrorMessage';
 
 import styles from './ItemFormLayout.module.scss';
 
