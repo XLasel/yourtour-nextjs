@@ -1,0 +1,7 @@
+@use '@scssVariables' as *;
+
+.top {
+  @include mobile() {
+    margin-bottom: 40px;
+  }
+}

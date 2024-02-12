@@ -1,1 +1,0 @@
-export { ResponseCard } from './ui/ResponseCard'
