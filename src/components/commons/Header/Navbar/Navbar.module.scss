@@ -1,0 +1,124 @@
+@use '@scssVariables' as *;
+
+.wrapper {
+    width: 100%;
+    height: 88px;
+
+    & svg {
+        fill: $white;
+    }
+}
+
+.fixed {
+    pointer-events: none;
+    opacity: 0;
+
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+
+    background: rgba(243, 239, 232, 0.6);
+    backdrop-filter: blur(27px);
+
+    color: $black;
+
+    & svg {
+        fill: $black;
+    }
+}
+
+.fixed.show-nav {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    animation: slideAnimation 1s ease-in-out;
+}
+
+.fixed.close-nav {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-100%);
+    animation: slideAnimationReverse 1s ease-in-out;
+}
+
+@keyframes slideAnimation {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideAnimationReverse {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 1282px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 57px;
+
+    @include tablet() {
+        padding: 0 20px;
+    }
+
+    & a {
+        width: auto;
+        height: auto;
+        text-decoration: none;
+    }
+}
+
+.logo-wrapper {
+    overflow: hidden;
+    width: 182px;
+    height: auto;
+
+    @include tablet() {
+        width: 133px;
+    }
+}
+
+.logo {
+    display: block;
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+
+    padding: 0;
+
+    list-style: none;
+
+    @include desktop() {
+        gap: 30px;
+    }
+
+    @include tablet() {
+        display: none;
+    }
+
+    @include hover {
+        & a:hover {
+            text-decoration-line: underline;
+            text-underline-offset: 7px;
+            text-decoration-thickness: 1px;
+        }
+    }
+}

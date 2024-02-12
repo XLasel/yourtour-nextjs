@@ -1,9 +1,9 @@
 import './globals.scss';
 
-import { Footer } from '@/pages/Footer';
-import { Header } from '@/pages/Header';
+import { Footer } from '@commons/Footer';
+import { Header } from '@commons/Header';
 
-import { DeviceTypeProvider } from '@/shared/context/DeviceTypeContext';
+import { DeviceTypeProvider } from '@/context/DeviceTypeContext';
 
 export const metadata = {
   title: 'YourTour | Авторские путешествия',

@@ -1,0 +1,262 @@
+@use '@scssVariables' as *;
+@import './layout/variablesForm.scss';
+
+.form {
+  @extend %main-border-radius;
+
+  width: 100%;
+  padding: 70px;
+
+  background: $white;
+
+  @include desktop() {
+    padding: 60px;
+  }
+
+  @include tablet() {
+    padding: 20px 20px 40px;
+
+    border-radius: 30px;
+  }
+
+}
+
+.form-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 33px;
+  column-gap: 30px;
+
+  @include desktop() {
+    column-gap: 20px;
+  }
+
+  @include tablet() {
+    row-gap: 30px;
+  }
+}
+
+.field {
+  @extend %field-base;
+
+  &:nth-child(-n + 6) {
+    flex-basis: calc(50% - 15px);
+
+    @include desktop() {
+      flex-basis: calc(50% - 10px);
+    }
+
+    @include mobile() {
+      flex-basis: 100%;
+    }
+  }
+
+  &:nth-child(n + 7):nth-child(-n + 10) {
+    flex-basis: 100%;
+  }
+}
+
+.input {
+  @extend %input-base;
+}
+
+.textarea {
+  @extend %input-base;
+
+  height: 152px;
+
+  resize: none;
+
+  @include tablet() {
+    height: 132px;
+  }
+}
+
+.input,
+.textarea {
+  @include tablet() {
+    padding: 9px;
+  }
+}
+
+.fieldset {
+  all: unset;
+
+  display: flex;
+  flex-direction: column;
+
+  & legend {
+    margin-bottom: 8px;
+  }
+}
+
+.invalid::before {
+  @extend %invalid;
+
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  bottom: -5px;
+  left: -5px;
+
+  border-radius: 10px;
+
+}
+
+.radio-flex {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  cursor: pointer;
+
+  @include tablet() {
+    gap: 10px;
+  }
+
+  & input {
+    position: absolute;
+
+    pointer-events: none;
+    opacity: 0;
+  }
+}
+
+.radio-custom {
+  position: relative;
+
+  display: inline-block;
+
+  width: 22px;
+  height: 22px;
+
+  border: 2px solid $black;
+  border-radius: 50%;
+
+  @include mobile {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.radio-input:checked+.radio-custom::before {
+  content: '';
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  display: inline-block;
+
+  width: 12px;
+  height: 12px;
+
+  background-color: $black;
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+
+  @include mobile() {
+    width: 9px;
+    height: 9px;
+  }
+}
+
+.checkbox-label {
+  @extend %p-small;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  color: $gray300;
+
+  cursor: pointer;
+
+  @include desktop() {
+    gap: 12px;
+  }
+
+  @include tablet() {
+    align-items: flex-start;
+
+    font:
+      normal 400 16px / 23px 'Roboto',
+      sans-serif;
+    letter-spacing: 0px;
+  }
+
+  @include mobile() {
+    gap: 10px;
+  }
+
+  & a {
+    @extend %link;
+  }
+}
+
+.checkbox-input {
+  position: absolute;
+
+  pointer-events: none;
+  opacity: 0;
+}
+
+.checkbox-custom {
+  display: block;
+  position: relative;
+
+  flex-shrink: 0;
+
+  width: 22px;
+  height: 22px;
+
+  border: 2px solid $black;
+  border-radius: 20%;
+
+  @include mobile() {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.checkbox-input:checked+.checkbox-custom::before {
+  content: '';
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  display: inline-block;
+
+  width: 12px;
+  height: 9px;
+
+  background-image: url('/image/icons/check-mark.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  transform: translate(-50%, -50%);
+
+  @include mobile() {
+    width: 10px;
+    height: 7px;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+
+  @include tablet() {
+    gap: 10px;
+  }
+}

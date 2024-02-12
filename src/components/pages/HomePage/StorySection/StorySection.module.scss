@@ -1,0 +1,11 @@
+@use '@scssVariables' as *;
+
+.stories-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  @include tablet() {
+    gap: 20px;
+  }
+}

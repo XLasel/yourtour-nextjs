@@ -1,0 +1,51 @@
+@use '@scssVariables' as *;
+
+.root-article-promo {
+  @extend %section-mrg-bottom;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  @include mobile() {
+    flex-wrap: wrap;
+
+    text-align: center;
+  }
+}
+
+.img {
+  @extend %main-border-radius;
+
+  width: 370px;
+  height: 370px;
+  object-fit: cover;
+
+  @include tablet() {
+    width: 130px;
+    height: 133px;
+  }
+}
+
+.info {
+  max-width: 371px;
+
+  & a {
+    @extend %link;
+  }
+
+  @include mobile() {
+    flex-basis: 100%;
+  }
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.text {
+  color: $gray300;
+}
