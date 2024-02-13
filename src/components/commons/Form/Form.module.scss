@@ -1,7 +1,7 @@
 @use '@scssVariables' as *;
 @import './layout/variablesForm.scss';
 
-.form {
+.root {
   @extend %main-border-radius;
 
   width: 100%;
@@ -21,7 +21,7 @@
 
 }
 
-.form-wrapper {
+.wrapper {
   display: flex;
   flex-wrap: wrap;
   row-gap: 33px;

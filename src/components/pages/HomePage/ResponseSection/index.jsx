@@ -9,7 +9,7 @@ export const ResponseSection = () => {
   const { title, subtitle } = responseInfo;
   return (
     <Section title={title} subtitle={subtitle} id="response">
-      <div className={s['cards-list']}>
+      <div className={s.root}>
         {responseData.map((user, id) => (
           <ResponseCard
             key={id}

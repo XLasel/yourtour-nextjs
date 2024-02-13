@@ -1,6 +1,6 @@
 @use '@scssVariables' as *;
 
-.ticket {
+.root {
   @extend %main-border-radius;
 
   position: relative;

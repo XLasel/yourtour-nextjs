@@ -14,7 +14,7 @@ export const StorySection = () => {
 
   return (
     <Section title={title} subtitle={subtitle} id="story">
-      <div className={s['stories-container']}>
+      <div className={s.root}>
         {stories.map((story, index) => (
           <HoverActiveProvider key={index}>
             <StoryCard {...story} />

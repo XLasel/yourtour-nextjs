@@ -14,17 +14,15 @@ export const Header = () => {
 
   return (
     <header
-      className={cx(s.header, {
+      className={cx(s.root, {
         [s['nav-fixed']]: navFixed,
       })}
     >
       <Navbar isFixed={navFixed} isShow={navbarState} />
       <div className={s.content}>
-        <div className={s['content__flex']}>
-          <h1 className={s['content__title']}>
-            Идеальные путешествия существуют
-          </h1>
-          <p className={s['content__text']}>
+        <div className={s.wrapper}>
+          <h1 className={s.title}>Идеальные путешествия существуют</h1>
+          <p className={s.text}>
             Идейные соображения высшего порядка, а также рамки и место обучения
             кадров
           </p>

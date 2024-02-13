@@ -1,6 +1,6 @@
 @use '@scssVariables' as *;
 
-.flexbox {
+.root {
   display: flex;
   flex-direction: column;
   gap: 30px;

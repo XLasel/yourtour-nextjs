@@ -1,6 +1,6 @@
 @use '@scssVariables' as *;
 
-.button {
+.root {
   @extend %p-normal;
 
   width: 235px;
@@ -48,7 +48,7 @@
   }
 }
 
-.disabled {
+.root:disabled {
   background-color: $green200;
 
   @include hover {

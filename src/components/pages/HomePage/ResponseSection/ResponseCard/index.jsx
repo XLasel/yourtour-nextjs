@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import PropTypes from 'prop-types';
+import { arrayOf, string } from 'prop-types';
 
 import s from './ResponseCard.module.scss';
 
 export const ResponseCard = ({ text, userName, selectedTour, userAvatar }) => {
   return (
-    <div className={s.card}>
+    <div className={s.root}>
       <div className={s.text}>
         {text.map((p, id) => {
           return <p key={id}>{p}</p>;
@@ -29,8 +29,8 @@ export const ResponseCard = ({ text, userName, selectedTour, userAvatar }) => {
 };
 
 ResponseCard.propTypes = {
-  text: PropTypes.arrayOf(PropTypes.string).isRequired,
-  userName: PropTypes.string.isRequired,
-  selectedTour: PropTypes.string.isRequired,
-  userAvatar: PropTypes.string.isRequired,
+  text: arrayOf(string).isRequired,
+  userName: string.isRequired,
+  selectedTour: string.isRequired,
+  userAvatar: string,
 };

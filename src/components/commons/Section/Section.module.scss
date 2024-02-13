@@ -1,6 +1,6 @@
 @use '@scssVariables' as *;
 
-.section {
+.root {
   @extend %section-mrg-bottom;
 }
 
@@ -22,17 +22,17 @@
 
     margin-bottom: 50px;
   }
-}
 
-.top_for-list {
-  gap: 35px;
+  &--for-list {
+    gap: 35px;
 
-  margin-bottom: 106px;
+    margin-bottom: 106px;
 
-  @include tablet() {
-    gap: 30px;
+    @include tablet() {
+      gap: 30px;
 
-    margin-bottom: 50px;
+      margin-bottom: 50px;
+    }
   }
 }
 

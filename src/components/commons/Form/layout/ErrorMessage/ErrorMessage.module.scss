@@ -1,6 +1,6 @@
 @use '@scssVariables' as *;
 
-.error-tooltip {
+.root {
     @extend %p-small;
 
     position: absolute;
@@ -42,12 +42,12 @@
 }
 
 @include hover {
-    div:hover>.error-tooltip {
+    div:hover>.root {
         display: block;
         opacity: 1;
     }
 
-    div:focus-within>.error-tooltip {
+    div:focus-within>.root {
         display: block;
         opacity: 1;
     }

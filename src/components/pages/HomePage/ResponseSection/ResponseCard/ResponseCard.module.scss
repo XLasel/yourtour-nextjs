@@ -1,6 +1,6 @@
 @use '@scssVariables' as *;
 
-.card {
+.root {
   @extend %main-border-radius;
 
   display: flex;

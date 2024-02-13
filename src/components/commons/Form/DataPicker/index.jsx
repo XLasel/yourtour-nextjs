@@ -1,10 +1,10 @@
 'use client';
 
 import { useFormContext } from 'react-hook-form';
-import PropTypes from 'prop-types';
+import { oneOfType, string, arrayOf } from 'prop-types';
 import cx from 'classnames';
 
-import { ItemFormLayout } from '../layout/ItemFormLayout';
+import { FieldLayout } from '../layout/FieldLayout';
 
 import s from './DataPicker.module.scss';
 
@@ -57,7 +57,7 @@ export const DataPicker = ({ className }) => {
 
   return (
     <>
-      <ItemFormLayout className={className} label="Дата от" id="startDate">
+      <FieldLayout className={className} label="Дата от" id="startDate">
         <input
           id="startDate"
           type="date"
@@ -67,9 +67,9 @@ export const DataPicker = ({ className }) => {
           })}
           onBlur={() => trigger(['startDate', 'endDate'])}
         />
-      </ItemFormLayout>
+      </FieldLayout>
 
-      <ItemFormLayout className={className} label="Дата до" id="endDate">
+      <FieldLayout className={className} label="Дата до" id="endDate">
         <input
           id="endDate"
           type="date"
@@ -79,14 +79,11 @@ export const DataPicker = ({ className }) => {
           })}
           onBlur={() => trigger(['startDate', 'endDate'])}
         />
-      </ItemFormLayout>
+      </FieldLayout>
     </>
   );
 };
 
 DataPicker.propTypes = {
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  className: oneOfType([string, arrayOf(string)]),
 };

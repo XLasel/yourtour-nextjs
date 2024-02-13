@@ -1,6 +1,6 @@
 @use '@scssVariables' as *;
 
-.btn {
+.root {
   @extend %main-border-radius;
   @extend %p-big;
 

@@ -12,7 +12,7 @@ export const Footer = () => {
   const deviceType = useDeviceType();
 
   return (
-    <footer className={s.footer}>
+    <footer className={s.root}>
       <Container>
         <div className={s.content}>
           <p className={s.text}>Наши социальные сети</p>

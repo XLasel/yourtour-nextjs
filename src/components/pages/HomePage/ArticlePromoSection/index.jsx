@@ -4,7 +4,7 @@ import s from './ArcticlePromoSection.module.scss';
 
 export const ArticlePromoSection = () => {
   return (
-    <article className={s['root-article-promo']}>
+    <article className={s.root}>
       <div className={s.content}>
         <Image
           className={s.img}

@@ -1,6 +1,6 @@
 @use '@scssVariables' as *;
 
-.container {
+.root {
   max-width: 1276px;
   margin: 0 auto;
   padding: 0 53px;
@@ -8,14 +8,14 @@
   @include tablet() {
     padding: 0 21px;
   }
+}
 
-  &-fluid {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 30px;
+.fluid {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 30px;
 
-    @include desktop() {
-      padding: 0 21px;
-    }
+  @include desktop() {
+    padding: 0 21px;
   }
 }

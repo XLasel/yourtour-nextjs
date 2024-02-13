@@ -1,6 +1,6 @@
 'use client';
 
-import PropTypes from 'prop-types';
+import { string, oneOfType, arrayOf, object } from 'prop-types';
 
 import { useDynamicSvgImport } from '@/hook/useDynamicSvgImport';
 
@@ -19,10 +19,7 @@ export const SvgIcon = ({ iconUrl, wrapperStyle, svgProp }) => {
 };
 
 SvgIcon.propTypes = {
-  iconUrl: PropTypes.string.isRequired,
-  wrapperStyle: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]).isRequired,
-  svgProp: PropTypes.object,
+  iconUrl: string.isRequired,
+  wrapperStyle: oneOfType([string, arrayOf(string)]).isRequired,
+  svgProp: object,
 };

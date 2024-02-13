@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormContext } from 'react-hook-form';
-import PropTypes from 'prop-types';
+import { string } from 'prop-types';
 
 import s from './ErrorMessage.module.scss';
 
@@ -13,7 +13,7 @@ export const ErrorMessage = ({ id }) => {
 
   return (
     errors[id]?.message && (
-      <div className={s['error-tooltip']} onClick={() => setFocus(id)}>
+      <div className={s.root} onClick={() => setFocus(id)}>
         {errors[id].message}
       </div>
     )
@@ -21,5 +21,5 @@ export const ErrorMessage = ({ id }) => {
 };
 
 ErrorMessage.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: string.isRequired,
 };

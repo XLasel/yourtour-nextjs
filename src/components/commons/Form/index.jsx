@@ -4,7 +4,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import cx from 'classnames';
 
 import { ErrorMessage } from './layout/ErrorMessage';
-import { ItemFormLayout } from './layout/ItemFormLayout';
+import { FieldLayout } from './layout/FieldLayout';
 import { Select } from './Select';
 import { DataPicker } from './DataPicker';
 import { Button } from './Button';
@@ -38,9 +38,9 @@ export const Form = () => {
 
   return (
     <FormProvider {...methods}>
-      <form className={s.form}>
-        <div className={s['form-wrapper']}>
-          <ItemFormLayout className={s.field} label="Имя" id="name">
+      <form className={s.root}>
+        <div className={s.wrapper}>
+          <FieldLayout className={s.field} label="Имя" id="name">
             <input
               id="name"
               type="text"
@@ -51,9 +51,9 @@ export const Form = () => {
               aria-invalid={errors.name ? 'true' : 'false'}
               className={s.input}
             />
-          </ItemFormLayout>
+          </FieldLayout>
           <Select className={s.field} />
-          <ItemFormLayout className={s.field} label="Email" id="email">
+          <FieldLayout className={s.field} label="Email" id="email">
             <input
               className={s.input}
               type="email"
@@ -67,8 +67,8 @@ export const Form = () => {
                 },
               })}
             />
-          </ItemFormLayout>
-          <ItemFormLayout className={s.field} label="Телефон" id="phone">
+          </FieldLayout>
+          <FieldLayout className={s.field} label="Телефон" id="phone">
             <input
               className={s.input}
               type="tel"
@@ -82,9 +82,9 @@ export const Form = () => {
                 },
               })}
             />
-          </ItemFormLayout>
+          </FieldLayout>
           <DataPicker className={s.field} />
-          <ItemFormLayout className={s.field} label="Комментарий" id="comment">
+          <FieldLayout className={s.field} label="Комментарий" id="comment">
             <textarea
               className={s.textarea}
               name="comment"
@@ -92,7 +92,7 @@ export const Form = () => {
               rows="5"
               autoComplete="off"
             />
-          </ItemFormLayout>
+          </FieldLayout>
           <div
             className={cx(s.field, {
               [s.invalid]: errors.adult,
@@ -152,7 +152,7 @@ export const Form = () => {
               <Button
                 label="Найти тур"
                 type="submit"
-                variant="primary"
+                isPrimary
                 onClick={handleSubmit(onSubmit)}
               />
               <Button label="Сбросить" type="reset" onClick={() => reset()} />
