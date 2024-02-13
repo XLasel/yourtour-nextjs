@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import Image from 'next/image';
-import PropTypes from 'prop-types';
+import { oneOfType, string, arrayOf, number } from 'prop-types';
 import cx from 'classnames';
 
 import { BtnLink } from '@commons/BtnLink';
@@ -33,7 +33,7 @@ export const ChoiceCard = ({
 
   return (
     <div
-      className={cx(s.card, className)}
+      className={cx(s.root, className)}
       {...handlers}
       onClick={handleBtnClick}
     >
@@ -52,13 +52,10 @@ export const ChoiceCard = ({
 };
 
 ChoiceCard.propTypes = {
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
-  title: PropTypes.string.isRequired,
-  transfer: PropTypes.string,
-  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  imageSrc: PropTypes.string.isRequired,
-  href: PropTypes.string,
+  className: oneOfType([string, arrayOf(string)]),
+  title: string.isRequired,
+  transfer: string,
+  price: oneOfType([string, number]),
+  imageSrc: string.isRequired,
+  href: string,
 };

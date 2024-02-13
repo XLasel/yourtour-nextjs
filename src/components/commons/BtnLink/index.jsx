@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import PropTypes from 'prop-types';
+import { bool, string } from 'prop-types';
 import Link from 'next/link';
 import cx from 'classnames';
 
@@ -9,7 +9,7 @@ const BtnLink = forwardRef(({ active, hovered, href = '#' }, ref) => {
   return (
     <Link
       ref={ref}
-      className={cx(s.btn, {
+      className={cx(s.root, {
         [s.hovered]: hovered,
         [s.active]: active,
       })}
@@ -23,9 +23,9 @@ const BtnLink = forwardRef(({ active, hovered, href = '#' }, ref) => {
 BtnLink.displayName = 'BtnLink';
 
 BtnLink.propTypes = {
-  active: PropTypes.bool,
-  hovered: PropTypes.bool,
-  href: PropTypes.string,
+  active: bool,
+  hovered: bool,
+  href: string,
 };
 
 export { BtnLink };

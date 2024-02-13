@@ -1,10 +1,10 @@
 'use client';
 
 import { useFormContext } from 'react-hook-form';
-import PropTypes from 'prop-types';
+import { oneOfType, string, arrayOf } from 'prop-types';
 import cx from 'classnames';
 
-import { ItemFormLayout } from '../layout/ItemFormLayout';
+import { FieldLayout } from '../layout/FieldLayout';
 
 import s from './Select.module.scss';
 
@@ -20,7 +20,7 @@ export const Select = ({ className }) => {
   const selectTour = watch('selectTour');
 
   return (
-    <ItemFormLayout
+    <FieldLayout
       className={cx(s['custom-arrow'], className)}
       label="Направление"
       id="selectTour"
@@ -41,13 +41,10 @@ export const Select = ({ className }) => {
           </option>
         ))}
       </select>
-    </ItemFormLayout>
+    </FieldLayout>
   );
 };
 
 Select.propTypes = {
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  className: oneOfType([string, arrayOf(string)]),
 };

@@ -17,7 +17,7 @@ export const ChoiceList = () => {
   );
 
   return (
-    <div className={s['cards-list']}>
+    <div className={s.root}>
       {filteredCards.map((card, id) => (
         <HoverActiveProvider key={id}>
           <ChoiceCard

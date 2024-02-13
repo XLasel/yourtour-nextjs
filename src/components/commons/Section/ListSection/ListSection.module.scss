@@ -1,6 +1,6 @@
 @use '@scssVariables' as *;
 
-.list {
+.root {
     @extend %p-big;
 
     display: flex;

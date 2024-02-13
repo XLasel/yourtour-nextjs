@@ -25,7 +25,7 @@ export const GallerySection = () => {
 
   return (
     <Section title={title} subtitle={subtitle} id="gallery">
-      <div className={s.flexbox}>
+      <div className={s.root}>
         {modiPhotos.map((row, rowIndex) => (
           <div
             className={cx(s.row, {

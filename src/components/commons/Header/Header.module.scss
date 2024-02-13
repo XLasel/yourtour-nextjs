@@ -1,6 +1,6 @@
 @use '@scssVariables' as *;
 
-.header {
+.root {
   @extend %section-mrg-bottom;
 
   background-image: url('/image/header/header-img.jpg');
@@ -29,39 +29,39 @@
   @include tablet() {
     padding: 52px 0;
   }
+}
 
-  &__flex {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
 
-    @include tablet() {
-      gap: 40px;
-    }
+  @include tablet() {
+    gap: 40px;
+  }
+}
+
+.title {
+  margin: auto;
+
+  @include tablet() {
+    max-width: 360px;
+    padding: 0;
+  }
+}
+
+.text {
+  max-width: 612px;
+  padding: 0 25px;
+
+  @include desktop() {
+    max-width: 492px;
   }
 
-  &__title {
-    margin: auto;
-
-    @include tablet() {
-      max-width: 360px;
-      padding: 0;
-    }
-  }
-
-  &__text {
-    max-width: 612px;
-    padding: 0 25px;
-
-    @include desktop() {
-      max-width: 492px;
-    }
-
-    @include tablet() {
-      max-width: 360px;
-    }
+  @include tablet() {
+    max-width: 360px;
   }
 }
 

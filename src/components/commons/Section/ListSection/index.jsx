@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { arrayOf, shape, string } from 'prop-types';
 import cx from 'classnames';
 
 import { useTabContext } from '@/context/TabContext';
@@ -20,7 +20,7 @@ export const ListSection = ({ options }) => {
   }, []);
 
   return (
-    <ul className={s.list}>
+    <ul className={s.root}>
       {options.map((option) => (
         <li
           className={cx(s.item, {
@@ -37,10 +37,10 @@ export const ListSection = ({ options }) => {
 };
 
 ListSection.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      category: PropTypes.string,
-      text: PropTypes.string,
+  options: arrayOf(
+    shape({
+      category: string,
+      text: string,
     }),
   ).isRequired,
 };

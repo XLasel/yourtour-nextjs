@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import Image from 'next/image';
-import PropTypes from 'prop-types';
+import { string, arrayOf, shape, oneOf } from 'prop-types';
 
 import { BtnLink } from '@commons/BtnLink';
 
@@ -27,7 +27,7 @@ export const StoryCard = ({
   };
 
   return (
-    <div className={s.ticket} {...handlers} onClick={handleBtnClick}>
+    <div className={s.root} {...handlers} onClick={handleBtnClick}>
       <div className={s.body}>
         <div className={s.top}>
           <h3 className={s.title}>
@@ -69,17 +69,15 @@ export const StoryCard = ({
 };
 
 StoryCard.propTypes = {
-  title: PropTypes.string.isRequired,
-  transfer: PropTypes.string.isRequired,
-  content: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.oneOf(['paragraph', 'list']).isRequired,
-      text: PropTypes.string,
-      items: PropTypes.arrayOf(PropTypes.string),
+  title: string.isRequired,
+  transfer: string.isRequired,
+  content: arrayOf(
+    shape({
+      type: oneOf(['paragraph', 'list']).isRequired,
+      text: string,
+      items: arrayOf(string),
     }),
   ).isRequired,
-  socialLinks: PropTypes.arrayOf(
-    PropTypes.shape({ url: PropTypes.string, text: PropTypes.string }),
-  ).isRequired,
-  imageUrl: PropTypes.string.isRequired,
+  socialLinks: arrayOf(shape({ url: string, text: string })).isRequired,
+  imageUrl: string.isRequired,
 };

@@ -1,7 +1,7 @@
 @use '@scssVariables' as *;
 @use '../variablesForm.scss';
 
-.field {
+.root {
     @extend %field-base;
 }
 

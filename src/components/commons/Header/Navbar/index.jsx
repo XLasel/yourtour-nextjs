@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import { bool, objectOf } from 'prop-types';
 import cx from 'classnames';
 
 import Logo from 'public/image/icons/YouTour.svg';
@@ -9,7 +9,7 @@ import s from './Navbar.module.scss';
 export const Navbar = ({ isFixed, isShow }) => {
   return (
     <div
-      className={cx(s.wrapper, {
+      className={cx(s.root, {
         [s.fixed]: isFixed,
         [s['show-nav']]: isShow.showNav,
         [s['close-nav']]: isShow.closeNav,
@@ -37,6 +37,6 @@ export const Navbar = ({ isFixed, isShow }) => {
 };
 
 Navbar.propTypes = {
-  isFixed: PropTypes.bool,
-  isShow: PropTypes.objectOf(PropTypes.bool),
+  isFixed: bool,
+  isShow: objectOf(bool),
 };
