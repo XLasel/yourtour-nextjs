@@ -1,1 +1,0 @@
-export { ArticlePromoSection } from './ui/ArticlePromoSection'
