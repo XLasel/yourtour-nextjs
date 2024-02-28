@@ -28,9 +28,6 @@ npm run build
 ```bash
 npm start
 ```
-## Архитектура
-
-Проект основан на [Feature-Sliced Design](https://feature-sliced.design/).
 
 ## Зависимости
 
