@@ -8,7 +8,7 @@ import { Section } from '@commons/Section';
 import { useDeviceType } from '@/context/DeviceTypeContext';
 
 import { galleryInfo, photoArray } from './config';
-import { filterPhotosGallery } from './lib';
+import { filterPhotosGallery } from '@/lib';
 
 import s from './GallerySection.module.scss';
 
